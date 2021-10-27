@@ -40,6 +40,26 @@ function changeText(newText) {
     gMeme.lines[gMeme.selectedLineIdx].txt = newText;
 }
 
+function align(dir) {
+    const currLine = gMeme.selectedLineIdx;
+    const canWidth = gElCanvas.width
+  
+    switch (dir) {
+        case 'left':
+            gCtx.textAlign = "left";
+            gMeme.lines[currLine].pos.x = 0;
+            break;
+        case 'right':
+            gCtx.textAlign = "right";
+            gMeme.lines[currLine].pos.x = canWidth;
+            break;
+        default:
+            gCtx.textAlign = "center";
+            gMeme.lines[currLine].pos.x = canWidth / 2;
+            break;
+    }
+}
+
 function fontSizing(sign) {
     var currLineSize = gMeme.lines[gMeme.selectedLineIdx].size;
 
@@ -57,7 +77,7 @@ function changeFill(newColor) {
     renderMeme();
 }
 
-function changeFont(font){
+function changeFont(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 
@@ -108,7 +128,7 @@ function createLine() {
         }
     }
     gMeme.lines.push(line);
-    gMeme.selectedLineIdx = gMeme.lines.length-1;
+    gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
 function _getImgIdx(imgId) {

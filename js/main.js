@@ -84,6 +84,10 @@ function onChangeText() {
     renderMeme();
 }
 
+function onAlign(dir){
+    align(dir);
+    renderMeme();
+}
 
 //drawText(text, x, y)
 function drawText(currLine) {
