@@ -17,20 +17,43 @@ var gMeme = {
             color: 'black',
             font: 'impact',
             pos: {
-                x: 250,
-                y: 20
+                x: 200,
+                y: 100
             }
-        }
+        },
 
     ]
 }
+
+
 
 function getLine() {
     return gMeme.lines[gMeme.selectedLineIdx];
 }
 
+function getLines() {
+    return gMeme.lines;
+}
+
 function changeText(newText) {
     gMeme.lines[gMeme.selectedLineIdx].txt = newText;
+}
+
+function fontSizing(sign) {
+    var currLineSize = gMeme.lines[gMeme.selectedLineIdx].size;
+
+    if (sign === 'plus' && currLineSize < 80) {
+        gMeme.lines[gMeme.selectedLineIdx].size += 5
+
+    } else if (sign === 'minus' && currLineSize > 20) {
+        gMeme.lines[gMeme.selectedLineIdx].size -= 5
+    }
+}
+
+function changeLine() {
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
+    else gMeme.selectedLineIdx += 1
+    console.log('Meme.selectedLineIdx', gMeme.selectedLineIdx);
 }
 
 function setPickedImg(id) {
@@ -46,4 +69,21 @@ function getImgSrc() {
 
 function _getImgIdx(imgId) {
     return gImages.findIndex(img => img.id === imgId);
+}
+
+function createLine() {
+    // const xCenter = (gElCanvas.width/2)-(currLine.txt.length*10)
+
+    var line = {
+        txt: 'Holla Holla!',
+        size: 40,
+        align: 'left',
+        color: 'black',
+        font: 'impact',
+        pos: {
+            x: 150,
+            y: 450
+        }
+    }
+    gMeme.lines.push(line);
 }

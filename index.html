@@ -28,16 +28,26 @@
         <section class="editor">
             <div class="editor-contrler">
                 <input type="text" class="text-line" name="text-line" placeholder="Enter text here">
+                <!-- contenteditable onkeyup="onChangeText()" -->
                 <button onclick="onChangeText()">add text</button>
+                <div class="font-sizing">
+                    <img class="btn icon" src="imgs/icons/increase-font.png" onclick="onFontSizing('plus')" />
+                    <img class="btn icon" src="imgs/icons/decrease-font.png" onclick="onFontSizing('minus')" />
+                    <img class="btn icon" src="imgs/icons/up-down-arrows.png" onclick="onChangeLine('minus')" />
+                    <img class="btn icon" src="imgs/icons/add.png" onclick="onCreateLine()" />
+                    <!-- <button onclick="onFontSizing('plus')"></button>
+                    <button onclick="onFontSizing('minus')"></button> -->
+                </div>
             </div>
             <div class="canvas-container">
+                <!-- contenteditable -->
                 <canvas width="500" height="500" style="outline:1px solid #1c0080"></canvas>
             </div>
         </section>
 
         <section class="gallery">
-            <img src="imgs/meme-imgs/1.jpg" onclick="onSetPickedImg(1)"/>
-            <img src="imgs/meme-imgs/2.jpg" onclick="onSetPickedImg(2)"/>
+            <img src="imgs/meme-imgs/1.jpg" onclick="onSetPickedImg(1)" />
+            <img src="imgs/meme-imgs/2.jpg" onclick="onSetPickedImg(2)" />
 
         </section>
     </main>
