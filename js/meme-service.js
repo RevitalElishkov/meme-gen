@@ -16,6 +16,7 @@ var gMeme = {
             align: 'left',
             color: 'black',
             font: 'impact',
+            isSelected: true,
             pos: {
                 x: 200,
                 y: 100
@@ -61,7 +62,7 @@ function moveLine(dir) {
     // let currY = gMeme.lines[currLine].pos.y
 
     gMeme.lines[currLine].pos.y += (dir === "up") ? -5 : +5;
-    console.log('gMeme.lines[selectedLineIdx].pos.y', gMeme.lines[currLine].pos.y);
+    // console.log('gMeme.lines[selectedLineIdx].pos.y', gMeme.lines[currLine].pos.y);
 }
 
 function setPickedImg(id) {
@@ -75,8 +76,11 @@ function getImgSrc() {
     return selectedImg;
 }
 
-function _getImgIdx(imgId) {
-    return gImages.findIndex(img => img.id === imgId);
+function deleteLine() {
+    let idx = gMeme.selectedLineIdx;
+    gMeme.lines.splice(idx, 1);
+    gMeme.selectedLineIdx = 0;
+    console.log('gMeme.lines', gMeme.lines);
 }
 
 function createLine() {
@@ -88,10 +92,16 @@ function createLine() {
         align: 'left',
         color: 'black',
         font: 'impact',
+        isSelected: true,
         pos: {
             x: 150,
             y: 450
         }
     }
     gMeme.lines.push(line);
+    gMeme.selectedLineIdx += 1;
+}
+
+function _getImgIdx(imgId) {
+    return gImages.findIndex(img => img.id === imgId);
 }

@@ -36,6 +36,11 @@ function onCreateLine() {
     renderMeme();
 }
 
+function onDeleteLine(){
+    deleteLine();
+    renderMeme();
+}
+
 function renderMeme() {
 
     var img = new Image();
