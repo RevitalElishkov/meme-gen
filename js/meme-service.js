@@ -14,7 +14,7 @@ var gMeme = {
             txt: 'Holla!',
             size: 40,
             align: 'left',
-            color: 'black',
+            color: 'white',
             font: 'impact',
             isSelected: true,
             pos: {
@@ -51,10 +51,20 @@ function fontSizing(sign) {
     }
 }
 
+function changeFill(newColor) {
+    console.log('newColor', newColor);
+    gMeme.lines[gMeme.selectedLineIdx].color = newColor;
+    renderMeme();
+}
+
+function changeFont(font){
+    gMeme.lines[gMeme.selectedLineIdx].font = font;
+}
+
 function changeLine() {
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx += 1
-    console.log('Meme.selectedLineIdx', gMeme.selectedLineIdx);
+    // console.log('Meme.selectedLineIdx', gMeme.selectedLineIdx);
 }
 
 function moveLine(dir) {
@@ -80,7 +90,6 @@ function deleteLine() {
     let idx = gMeme.selectedLineIdx;
     gMeme.lines.splice(idx, 1);
     gMeme.selectedLineIdx = 0;
-    console.log('gMeme.lines', gMeme.lines);
 }
 
 function createLine() {
@@ -90,7 +99,7 @@ function createLine() {
         txt: 'Holla Holla!',
         size: 40,
         align: 'left',
-        color: 'black',
+        color: 'white',
         font: 'impact',
         isSelected: true,
         pos: {
@@ -99,7 +108,7 @@ function createLine() {
         }
     }
     gMeme.lines.push(line);
-    gMeme.selectedLineIdx += 1;
+    gMeme.selectedLineIdx = gMeme.lines.length-1;
 }
 
 function _getImgIdx(imgId) {

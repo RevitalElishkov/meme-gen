@@ -22,7 +22,7 @@ function onSetPickedImg(id) {
     drawImage();
 }
 
-function onMoveLine(dir){
+function onMoveLine(dir) {
     moveLine(dir)
     renderMeme();
 }
@@ -36,7 +36,7 @@ function onCreateLine() {
     renderMeme();
 }
 
-function onDeleteLine(){
+function onDeleteLine() {
     deleteLine();
     renderMeme();
 }
@@ -64,23 +64,37 @@ function drawImage() {
     };
 }
 
+function onChangeFill(color) {
+    // console.log('ev', ev);
+    // var fillColor = document.querySelector('.fillColor').value;
+    changeFill(color);
+    // ev.stopPropagation();
+    // console.log('fillColor', fillColor);
+    // renderMeme;
+}
+
+function onChangeFont(font){
+    changeFont(font);
+    renderMeme();
+}
+
 function onChangeText() {
     var newText = document.querySelector('.text-line').value;
     changeText(newText);
-    renderMeme()
+    renderMeme();
 }
+
 
 //drawText(text, x, y)
 function drawText(currLine) {
     if (!currLine) currLine = getLine();
     // console.log('currLine', currLine);
     // const xCenter = (gElCanvas.width / 2) - (currLine.txt.length * 10)
-    
     gCtx.lineWidth = 2;
-    gCtx.strokeStyle = currLine.color;
-    gCtx.fillStyle = 'white';
+    gCtx.strokeStyle = 'black';
+    gCtx.fillStyle = currLine.color;
     gCtx.font = `${currLine.size}px ${currLine.font}`;
-   
+
     gCtx.fillText(currLine.txt, currLine.pos.x, currLine.pos.y);
     gCtx.strokeText(currLine.txt, currLine.pos.x, currLine.pos.y);
 }
