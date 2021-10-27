@@ -2,7 +2,8 @@
 var gKeywords = { 'VIP': 1, 'funny puk': 1 }
 
 var gImages = [
-    { id: 1, url: 'imgs/meme-imgs/1.jpg', keywords: ['VIP'] }
+    { id: 1, url: 'imgs/meme-imgs/1.jpg', keywords: ['VIP'] },
+    { id: 2, url: 'imgs/meme-imgs/2.jpg', keywords: ['animals'] }
 ]
 
 var gMeme = {
@@ -29,17 +30,20 @@ function getLine() {
 }
 
 function changeText(newText) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = newText
+    gMeme.lines[gMeme.selectedLineIdx].txt = newText;
+}
 
+function setPickedImg(id) {
+    gMeme.selectedImgId = id;
 }
 
 function getImgSrc() {
-    var imIdx = _getImgIdx(gMeme.selectedImgId)
-    var selectedImg = gImages[imIdx].url
+    var imIdx = _getImgIdx(gMeme.selectedImgId);
+    var selectedImg = gImages[imIdx].url;
     // console.log('selectedImg', selectedImg); 
-    return selectedImg
+    return selectedImg;
 }
 
 function _getImgIdx(imgId) {
-    return gImages.findIndex(img => img.id === imgId)
+    return gImages.findIndex(img => img.id === imgId);
 }

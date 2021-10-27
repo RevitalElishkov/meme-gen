@@ -12,7 +12,11 @@ function onInit() {
     // drawText()
 }
 
-
+function onSetPickedImg(id){
+    setPickedImg(id);
+    drawImage();
+}
+ 
 function drawImage() {
     // console.log('hi');
     var img = new Image();
@@ -33,7 +37,7 @@ function onChangeText(){
 //drawText(text, x, y)
 function drawText() {
     var currLine = getLine();
-    console.log('currLine', currLine);
+    // console.log('currLine', currLine);
     const xCenter = (gElCanvas.width/2)-(currLine.txt.length*10)
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = currLine.color;
