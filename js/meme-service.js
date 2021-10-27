@@ -6,21 +6,35 @@ var gImages = [
 ]
 
 var gMeme = {
-    selectedImgId: 5,
+    selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I never eat Falafel',
-            size: 20,
+            txt: 'Holla!',
+            size: 40,
             align: 'left',
-            color: 'red'
+            color: 'black',
+            font: 'impact',
+            pos: {
+                x: 250,
+                y: 20
+            }
         }
+
     ]
 }
 
+function getLine() {
+    return gMeme.lines[gMeme.selectedLineIdx];
+}
+
+function changeText(newText) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = newText
+
+}
 
 function getImgSrc() {
-    var imIdx = _getImgIdx(1)
+    var imIdx = _getImgIdx(gMeme.selectedImgId)
     var selectedImg = gImages[imIdx].url
     // console.log('selectedImg', selectedImg); 
     return selectedImg
