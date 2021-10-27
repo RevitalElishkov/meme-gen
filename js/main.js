@@ -22,6 +22,11 @@ function onSetPickedImg(id) {
     drawImage();
 }
 
+function onMoveLine(dir){
+    moveLine(dir)
+    renderMeme();
+}
+
 function onChangeLine() {
     changeLine()
 }

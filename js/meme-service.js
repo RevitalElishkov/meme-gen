@@ -56,6 +56,14 @@ function changeLine() {
     console.log('Meme.selectedLineIdx', gMeme.selectedLineIdx);
 }
 
+function moveLine(dir) {
+    const currLine = gMeme.selectedLineIdx;
+    // let currY = gMeme.lines[currLine].pos.y
+
+    gMeme.lines[currLine].pos.y += (dir === "up") ? -5 : +5;
+    console.log('gMeme.lines[selectedLineIdx].pos.y', gMeme.lines[currLine].pos.y);
+}
+
 function setPickedImg(id) {
     gMeme.selectedImgId = id;
 }
