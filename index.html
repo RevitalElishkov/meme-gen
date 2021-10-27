@@ -9,7 +9,7 @@
     <title>MEME-GEN</title>
 </head>
 
-<body>
+<body onload="onInit()">
     <header>
 
         <h1>MEME-GEN</h1>
@@ -29,7 +29,9 @@
         </section>
 
         <section class="editor">
-
+            <div class="canvas-container">
+                <canvas width="500" height="500" style="outline:1px solid #1c0080"></canvas>
+              </div>
         </section>
     </main>
     <script src="js/main.js"></script>
