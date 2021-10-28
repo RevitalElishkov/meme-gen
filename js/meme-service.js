@@ -175,8 +175,7 @@ function _getInitialTxtPos() {
     var y;
 
     if (linesLen === 0) {
-        x = (canWidth / 2) - (txtWidth / 2);
-        // x = (canWidth / 2) - (txtWidth / 2) - 35;
+        x = (canWidth / 2) - 47;
         y = 70;
     } else if (linesLen === 1) {
         y = canHeight - 50;

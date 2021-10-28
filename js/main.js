@@ -114,7 +114,6 @@ function onAlign(dir) {
     renderMeme();
 }
 
-//drawText(text, x, y)
 function drawText(currLine) {
     if (!currLine) currLine = getLine();
     // console.log('currLine', currLine);
@@ -131,7 +130,7 @@ function drawText(currLine) {
 function drawRect(currLine) {
     const width = getTxtWidth(currLine.txt) + 20
     const height = currLine.size + 20
-    const x = currLine.pos.x - 30
+    // const x = currLine.pos.x - 30
     const y = currLine.pos.y - (height - 15)
     // console.log('x', x);
     // console.log('y', y);
@@ -139,9 +138,10 @@ function drawRect(currLine) {
     // console.log('height', height);
 
     gCtx.beginPath();
-    gCtx.rect(x, y, width + (height), height);
+    gCtx.rect(0, y, gElCanvas.width, height);
+    // gCtx.rect(5, y, width + (height), height);
     gCtx.fillStyle = 'rgba(220, 220, 220, 0.562)';
-    gCtx.fillRect(x, y, width + height, height);
+    gCtx.fillRect(0, y, gElCanvas.width, height);
 }
 
 
