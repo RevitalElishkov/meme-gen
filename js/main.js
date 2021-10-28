@@ -13,12 +13,12 @@ function onInit() {
     // renderMeme()
 }
 
-function onOpenGallery(){
+function onOpenGallery() {
     clearLines();
     var elGallery = document.querySelector('.gallery');
-    elGallery.style.display ='block';
+    elGallery.style.display = 'block';
     var elEditor = document.querySelector('.editor-container');
-    elEditor.style.display ='none';
+    elEditor.style.display = 'none';
 }
 
 function onFontSizing(sign) {
@@ -29,9 +29,9 @@ function onFontSizing(sign) {
 function onSetPickedImg(id) {
     setPickedImg(id);
     var elGallery = document.querySelector('.gallery');
-    elGallery.style.display ='none';
+    elGallery.style.display = 'none';
     var elEditor = document.querySelector('.editor-container');
-    elEditor.style.display ='block';
+    elEditor.style.display = 'block';
     drawImage();
 }
 
@@ -57,6 +57,7 @@ function onDeleteLine() {
 }
 
 function renderMeme() {
+    // console.log('hi');
     gCtx.save();
     var img = new Image();
     img.src = getImgSrc();
@@ -64,6 +65,7 @@ function renderMeme() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
         var lines = getLines();
         lines.forEach((line, idx) => {
+            // console.log('gIsDownload', gIsDownload);
             var selectedIdx = getSelectedIdx()
             if (selectedIdx === idx && !gIsDownload) drawRect(line);
             drawText(line)
@@ -102,6 +104,11 @@ function onChangeText() {
     renderMeme();
 }
 
+function cleanPlaceholder() {
+    document.querySelector('.text-line').value = '';
+
+}
+
 function onAlign(dir) {
     align(dir);
     renderMeme();
@@ -137,19 +144,16 @@ function drawRect(currLine) {
     gCtx.fillRect(x, y, width + height, height);
 }
 
+
+
+
 function onDownloadImg(elLink) {
     gIsDownload = true;
     renderMeme();
-    // downloadImg(elLink)
-    //to fix download with rect
+
     var imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
     gIsDownload = false;
 
 }
 
-// function downloadImg(elLink){
-//     var imgContent = gElCanvas.toDataURL('image/jpeg')
-//     elLink.href = imgContent
-//     gIsDownload = false;
-// }

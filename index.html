@@ -34,7 +34,7 @@
 
                 <div class="editor-contrler">
                     <input type="text" class="text-line" name="text-line" placeholder="Enter text here" contenteditable
-                        onkeyup="onChangeText()">
+                        onkeyup="onChangeText()" onblur="cleanPlaceholder()" >
                     <!-- contenteditable onkeyup="onChangeText()" -->
 
                     <!-- <button onclick="onChangeText()">add text</button> -->
@@ -66,7 +66,8 @@
                             <img class="btn icon" src="imgs/icons/arrow-down.png" onclick="onMoveLine('down')" />
                             <img class="btn icon" src="imgs/icons/up-down-arrows.png" onclick="onChangeLine()" />
                         </div>
-                        <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-meme.jpg">Download jpg</a>
+                        <!-- <button class="btn" onclick="onDownloadImg(this)" download="my-meme.jpg">Download jpg</button> -->
+                        <a href="#" class="btn down" onclick="onDownloadImg(this)" download="my-meme.jpg">Download jpeg</a>
 
                         <!-- <button onclick="onFontSizing('plus')"></button>
                     <button onclick="onFontSizing('minus')"></button> -->
@@ -94,7 +95,6 @@
             <img src="imgs/meme-imgs/16.jpg" onclick="onSetPickedImg(16)" />
             <img src="imgs/meme-imgs/17.jpg" onclick="onSetPickedImg(17)" />
             <img src="imgs/meme-imgs/18.jpg" onclick="onSetPickedImg(18)" />
-
 
         </section>
     </main>
