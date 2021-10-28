@@ -10,23 +10,25 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        // {
-        //     txt: 'Holla!',
-        //     size: 40,
-        //     align: 'left',
-        //     color: 'white',
-        //     font: 'impact',
-        //     isSelected: true,
-        //     pos: {
-        //         x: 200,
-        //         y: 100
-        //     }
-        // },
+        {
+            txt: 'Holla!',
+            size: 40,
+            align: 'left',
+            color: 'white',
+            font: 'impact',
+            isSelected: true,
+            pos: {
+                x: 200,
+                y: 100
+            }
+        },
 
     ]
 }
 
-
+function getSelectedIdx() {
+    return gMeme.selectedLineIdx;
+}
 
 function getLine() {
     return gMeme.lines[gMeme.selectedLineIdx];
@@ -65,7 +67,7 @@ function align(dir) {
 function fontSizing(sign) {
     var currLineSize = gMeme.lines[gMeme.selectedLineIdx].size;
 
-    if (sign === 'plus' && currLineSize < 80) {
+    if (sign === 'plus' && currLineSize < 70) {
         gMeme.lines[gMeme.selectedLineIdx].size += 5
 
     } else if (sign === 'minus' && currLineSize > 20) {
@@ -142,20 +144,20 @@ function _getImgIdx(imgId) {
 }
 
 function _getInitialTxtPos() {
-    const txtWidth = getTxtWidth('Holla!');
-    const linesLen = gMeme.lines.length;
-    const canWidth = gElCanvas.width;
-    const canheight = gElCanvas.height;
+    var txtWidth = getTxtWidth('Holla!');
+    var linesLen = gMeme.lines.length;
+    var canWidth = gElCanvas.width;
+    var canHeight = gElCanvas.height;
     var x = (canWidth / 2) - (txtWidth / 2);
     var y;
 
     if (linesLen === 0) {
-        x = (canWidth / 2) - (txtWidth / 2) -35;
+        // x = (canWidth / 2) - (txtWidth / 2) - 35;
         y = 70;
     } else if (linesLen === 1) {
-        y = canheight - 50;
+        y = canHeight - 50;
     } else if (linesLen > 1) {
-        y = (canheight / 2) + 20;
+        y = (canHeight / 2) + 20;
     }
     return { x, y }
 }

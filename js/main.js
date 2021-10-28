@@ -28,7 +28,9 @@ function onMoveLine(dir) {
 }
 
 function onChangeLine() {
-    changeLine()
+    changeLine();
+    renderMeme();
+
 }
 
 function onCreateLine() {
@@ -42,16 +44,19 @@ function onDeleteLine() {
 }
 
 function renderMeme() {
-
+    gCtx.save();
     var img = new Image();
     img.src = getImgSrc();
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
         var lines = getLines();
-        lines.forEach(line => {
+        lines.forEach((line, idx) => {
+            var selectedIdx = getSelectedIdx()
+            if (selectedIdx === idx) drawRect(line);
             drawText(line)
         })
     };
+    gCtx.restore();
 }
 
 function drawImage() {
@@ -60,7 +65,7 @@ function drawImage() {
     img.src = getImgSrc();
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        // drawText()
+        drawText()
     };
 }
 
@@ -73,7 +78,7 @@ function onChangeFill(color) {
     // renderMeme;
 }
 
-function onChangeFont(font){
+function onChangeFont(font) {
     changeFont(font);
     renderMeme();
 }
@@ -84,7 +89,7 @@ function onChangeText() {
     renderMeme();
 }
 
-function onAlign(dir){
+function onAlign(dir) {
     align(dir);
     renderMeme();
 }
@@ -101,4 +106,20 @@ function drawText(currLine) {
 
     gCtx.fillText(currLine.txt, currLine.pos.x, currLine.pos.y);
     gCtx.strokeText(currLine.txt, currLine.pos.x, currLine.pos.y);
+}
+
+function drawRect(currLine) {
+    const width = getTxtWidth(currLine.txt) + 20
+    const height = currLine.size + 20
+    const x = currLine.pos.x - 30
+    const y = currLine.pos.y - (height - 15)
+    console.log('x', x);
+    console.log('y', y);
+    console.log('width', width);
+    console.log('height', height);
+
+    gCtx.beginPath();
+    gCtx.rect(x, y, width +( height), height);
+    gCtx.fillStyle = 'rgba(220, 220, 220, 0.562)';
+    gCtx.fillRect(x, y, width + height, height);
 }
