@@ -10,18 +10,18 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        {
-            txt: 'Holla!',
-            size: 40,
-            align: 'left',
-            color: 'white',
-            font: 'impact',
-            isSelected: true,
-            pos: {
-                x: 200,
-                y: 100
-            }
-        },
+        // {
+        //     txt: 'Holla!',
+        //     size: 40,
+        //     align: 'left',
+        //     color: 'white',
+        //     font: 'impact',
+        //     isSelected: true,
+        //     pos: {
+        //         x: 200,
+        //         y: 100
+        //     }
+        // },
 
     ]
 }
@@ -152,6 +152,7 @@ function _getInitialTxtPos() {
     var y;
 
     if (linesLen === 0) {
+        x = (canWidth / 2) - (txtWidth / 2);
         // x = (canWidth / 2) - (txtWidth / 2) - 35;
         y = 70;
     } else if (linesLen === 1) {

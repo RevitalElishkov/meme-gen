@@ -2,6 +2,7 @@
 
 var gElCanvas;
 var gCtx;
+var gIsDownload = false;
 
 
 function onInit() {
@@ -52,7 +53,7 @@ function renderMeme() {
         var lines = getLines();
         lines.forEach((line, idx) => {
             var selectedIdx = getSelectedIdx()
-            if (selectedIdx === idx) drawRect(line);
+            if (selectedIdx === idx && !gIsDownload) drawRect(line);
             drawText(line)
         })
     };
@@ -65,7 +66,7 @@ function drawImage() {
     img.src = getImgSrc();
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        drawText()
+        // drawText()
     };
 }
 
@@ -113,13 +114,30 @@ function drawRect(currLine) {
     const height = currLine.size + 20
     const x = currLine.pos.x - 30
     const y = currLine.pos.y - (height - 15)
-    console.log('x', x);
-    console.log('y', y);
-    console.log('width', width);
-    console.log('height', height);
+    // console.log('x', x);
+    // console.log('y', y);
+    // console.log('width', width);
+    // console.log('height', height);
 
     gCtx.beginPath();
-    gCtx.rect(x, y, width +( height), height);
+    gCtx.rect(x, y, width + (height), height);
     gCtx.fillStyle = 'rgba(220, 220, 220, 0.562)';
     gCtx.fillRect(x, y, width + height, height);
 }
+
+function onDownloadImg(elLink) {
+    gIsDownload = true;
+    renderMeme();
+    // downloadImg(elLink)
+    //to fix download with rect
+    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+    gIsDownload = false;
+
+}
+
+// function downloadImg(elLink){
+//     var imgContent = gElCanvas.toDataURL('image/jpeg')
+//     elLink.href = imgContent
+//     gIsDownload = false;
+// }
