@@ -1,3 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+/* LAYOUT */
+
+.main-layout {
+    margin:  0 auto;
+    width: 600px;
+}
+
+
+/* COMPONENTS */
+
+header {
+    background-color: #ff7f00;
+    height: 100px;
+
+}
 
 img {
     width: 100px;
@@ -8,6 +27,49 @@ img {
 .icon {
     width: 40px;
     height: 40px; 
+}
+
+/* main nav */
+
+.main-nav{
+    width: 100px;
+}
+
+.main-nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    width: 100px;
+    
+    
+}
+
+.logo {
+    width: 150px;
+    height: 31px;
+}
+
+.editor-container {
+    display: none;
+}
+
+.editor-contrler {
+    width: 270px;
+    height: 275.5px;
+}
+footer {
+    height: 100px;
+}
+/* li >*:not(:last-child){
+    border-right: 2px solid black;
+
+} */
+/* .main-nav>*:not(:last-child) {
+    /* margin-inline-end: 100px;} */
+    
+
+
+.main-nav a:hover {
+    color: #000;
 }
 
 /* HELPERS */
@@ -37,4 +99,25 @@ img {
     padding: 0;
 }
 
+/* background */
+.bgc {
+    background-color: #ff7f00;
+  
+}
+
 /* BTNS */
+
+
+/* @media (min-width: 1020px){
+    .main-layout{
+        max-width: 980px;
+    }
+} */
+
+/* @media (min-width: 640px) {
+    .main-layout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 600px;
+    }
+} */

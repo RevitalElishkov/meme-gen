@@ -26,6 +26,10 @@ var gMeme = {
     ]
 }
 
+function clearLines() {
+    gMeme.lines = [];
+}
+
 function getSelectedIdx() {
     return gMeme.selectedLineIdx;
 }

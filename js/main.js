@@ -13,6 +13,14 @@ function onInit() {
     // renderMeme()
 }
 
+function onOpenGallery(){
+    clearLines();
+    var elGallery = document.querySelector('.gallery');
+    elGallery.style.display ='block';
+    var elEditor = document.querySelector('.editor-container');
+    elEditor.style.display ='none';
+}
+
 function onFontSizing(sign) {
     fontSizing(sign);
     renderMeme()
@@ -20,6 +28,10 @@ function onFontSizing(sign) {
 
 function onSetPickedImg(id) {
     setPickedImg(id);
+    var elGallery = document.querySelector('.gallery');
+    elGallery.style.display ='none';
+    var elEditor = document.querySelector('.editor-container');
+    elEditor.style.display ='block';
     drawImage();
 }
 
