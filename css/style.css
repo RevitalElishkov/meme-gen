@@ -6,7 +6,7 @@
 
 .main-layout {
     margin:  0 auto;
-    width: 600px;
+    max-width: 600px;
 }
 
 
@@ -15,7 +15,10 @@
 header {
     background-color: #ff7f00;
     height: 100px;
+}
 
+.header-warp {
+    margin-bottom: 0.973rem;
 }
 
 img {
@@ -50,12 +53,18 @@ img {
 
 .editor-container {
     display: none;
+    margin-bottom: 0.973rem;
 }
 
 .editor-contrler {
     width: 270px;
     height: 275.5px;
 }
+
+.gallery {
+    margin-bottom: 0.973rem;
+}
+
 footer {
     height: 100px;
 }
@@ -107,17 +116,21 @@ footer {
 
 /* BTNS */
 
-
-/* @media (min-width: 1020px){
-    .main-layout{
-        max-width: 980px;
-    }
-} */
-
-/* @media (min-width: 640px) {
+@media (max-width: 640px) {
     .main-layout {
         margin-left: auto;
         margin-right: auto;
         max-width: 600px;
     }
-} */
+    .editor {
+        flex-direction: column;
+    }
+   
+}
+
+@media (min-width: 1020px){
+    .main-layout{
+        max-width: 980px;
+    }
+}
+
