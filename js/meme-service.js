@@ -43,21 +43,23 @@ function changeText(newText) {
 function align(dir) {
     const currLine = gMeme.selectedLineIdx;
     const canWidth = gElCanvas.width
-  
+    const txtWidth = getTxtWidth()
+    // gCtx.save();
     switch (dir) {
+
         case 'left':
-            gCtx.textAlign = "left";
             gMeme.lines[currLine].pos.x = 0;
             break;
         case 'right':
-            gCtx.textAlign = "right";
-            gMeme.lines[currLine].pos.x = canWidth;
+            gMeme.lines[currLine].pos.x = canWidth - txtWidth;
             break;
         default:
-            gCtx.textAlign = "center";
-            gMeme.lines[currLine].pos.x = canWidth / 2;
+            gMeme.lines[currLine].pos.x = (canWidth / 2) - (txtWidth / 2);
             break;
     }
+    // gCtx.restore()
+    // renderMeme();
+
 }
 
 function fontSizing(sign) {
@@ -129,6 +131,12 @@ function createLine() {
     }
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
+}
+
+function getTxtWidth() {
+    const txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+    const txtWidth = gCtx.measureText(txt).width;
+    return txtWidth;
 }
 
 function _getImgIdx(imgId) {
