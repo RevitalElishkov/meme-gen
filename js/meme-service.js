@@ -10,18 +10,18 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        {
-            txt: 'Holla!',
-            size: 40,
-            align: 'left',
-            color: 'white',
-            font: 'impact',
-            isSelected: true,
-            pos: {
-                x: 200,
-                y: 100
-            }
-        },
+        // {
+        //     txt: 'Holla!',
+        //     size: 40,
+        //     align: 'left',
+        //     color: 'white',
+        //     font: 'impact',
+        //     isSelected: true,
+        //     pos: {
+        //         x: 200,
+        //         y: 100
+        //     }
+        // },
 
     ]
 }
@@ -116,29 +116,46 @@ function deleteLine() {
 
 function createLine() {
     // const xCenter = (gElCanvas.width/2)-(currLine.txt.length*10)
-
+    const initPos = _getInitialTxtPos()
     var line = {
-        txt: 'Holla Holla!',
+        txt: 'Holla!',
         size: 40,
         align: 'left',
         color: 'white',
         font: 'impact',
         isSelected: true,
-        pos: {
-            x: 150,
-            y: 450
-        }
+        pos: initPos
     }
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
-function getTxtWidth() {
-    const txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+function getTxtWidth(txt) {
+    if (!txt) txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+    // const txt = gMeme.lines[gMeme.selectedLineIdx].txt;
     const txtWidth = gCtx.measureText(txt).width;
     return txtWidth;
 }
 
 function _getImgIdx(imgId) {
     return gImages.findIndex(img => img.id === imgId);
+}
+
+function _getInitialTxtPos() {
+    const txtWidth = getTxtWidth('Holla!');
+    const linesLen = gMeme.lines.length;
+    const canWidth = gElCanvas.width;
+    const canheight = gElCanvas.height;
+    var x = (canWidth / 2) - (txtWidth / 2);
+    var y;
+
+    if (linesLen === 0) {
+        x = (canWidth / 2) - (txtWidth / 2) -35;
+        y = 70;
+    } else if (linesLen === 1) {
+        y = canheight - 50;
+    } else if (linesLen > 1) {
+        y = (canheight / 2) + 20;
+    }
+    return { x, y }
 }

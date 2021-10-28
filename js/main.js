@@ -60,7 +60,7 @@ function drawImage() {
     img.src = getImgSrc();
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        drawText()
+        // drawText()
     };
 }
 
