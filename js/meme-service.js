@@ -1,5 +1,8 @@
+'use strict';
 
+const KEY = 'myMemes'
 var gKeywords = { 'VIP': 1, 'funny puk': 1 }
+var gUserMemes = [];
 
 var gImages = [
     { id: 1, url: 'imgs/meme-imgs/1.jpg', keywords: ['VIP'] },
@@ -20,10 +23,7 @@ var gImages = [
     { id: 16, url: 'imgs/meme-imgs/16.jpg', keywords: ['animals'] },
     { id: 17, url: 'imgs/meme-imgs/17.jpg', keywords: ['animals'] },
     { id: 18, url: 'imgs/meme-imgs/18.jpg', keywords: ['animals'] },
-    { id: 19, url: 'imgs/meme-imgs/19.jpg', keywords: ['animals'] },
-
 ]
-
 
 var gMeme = {
     selectedImgId: 1,
@@ -41,12 +41,25 @@ var gMeme = {
         //         y: 100
         //     }
         // },
-
     ]
 }
 
+
 function clearLines() {
     gMeme.lines = [];
+}
+
+function saveMeme() {
+    var meme = getMemeUrl();
+    gUserMemes.push(meme);
+    saveToStorage(KEY, gUserMemes)
+}
+
+function getMemes() {
+    var memes = loadFromStorage(KEY);
+    console.log('memes', memes);
+    // if (!memes || !memes.length);
+    return memes;
 }
 
 function getSelectedIdx() {
@@ -59,6 +72,10 @@ function getLine() {
 
 function getLines() {
     return gMeme.lines;
+}
+
+function getImgs() {
+    return gImages;
 }
 
 function changeText(newText) {
@@ -100,7 +117,13 @@ function fontSizing(sign) {
 
 function changeFill(newColor) {
     console.log('newColor', newColor);
-    gMeme.lines[gMeme.selectedLineIdx].color = newColor;
+    gMeme.lines[gMeme.selectedLineIdx].fillColor = newColor;
+    renderMeme();
+}
+
+function changeOutline(newColor) {
+    console.log('newColor', newColor);
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = newColor;
     renderMeme();
 }
 
@@ -146,7 +169,8 @@ function createLine() {
         txt: 'Holla!',
         size: 40,
         align: 'left',
-        color: 'white',
+        fillColor: 'white',
+        strokeColor: 'black',
         font: 'impact',
         isSelected: true,
         pos: initPos
@@ -184,3 +208,4 @@ function _getInitialTxtPos() {
     }
     return { x, y }
 }
+
