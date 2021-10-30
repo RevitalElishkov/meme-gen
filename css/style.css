@@ -14,8 +14,7 @@
 /* COMPONENTS */
 
 body {
-    background-color: #ebebeb;
-
+    background-color: #f8edeb;
 }
 
 header {
@@ -24,14 +23,21 @@ header {
 }
 
 .header-warp {
-    margin-bottom: 0.973rem;
+    margin-bottom: 6.25rem;
+    box-shadow: 0px 0.5px 4px 0px #5a5959;
 }
 
 img {
+    object-fit: cover;
+}
+
+.imges {
     width: 150;
     height: 150px;
     margin: 5px;
-    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px #000000;
+
 }
 
 .down {
@@ -48,6 +54,16 @@ img {
     margin: auto;
 }
 
+input[type=text], select {
+   border: none;
+   background-color: #fcd5ce;
+   border-radius: 5px;
+   padding: 0 15px;
+   font-size: 15px;
+   color: gray;
+
+}
+
 input[type=color]{
     position: absolute;
     width: 100%;
@@ -59,8 +75,27 @@ input[type=color]{
     transform: translate(50%,-50%);
 }
 
+select {
+    height: 100%;
+}
+
 .canvas-container {
     margin-bottom: 5px;
+}
+
+.btn, input[type=text], .images, select {
+    box-shadow: 0px 0px 4px 0px #000000;
+}
+
+canvas, .controller-wrap{
+    border-radius: 8px;
+    box-shadow: 0px 0px 4px 0px gray;
+
+}
+
+.controller-wrap {
+    /* border: solid #f9dcc4; */
+    
 }
 
 /* main nav */
@@ -74,9 +109,8 @@ input[type=color]{
 }
 
 .main-nav  a {
-    color: #ffffff;
+    color: #000;
     text-decoration: none;
-  
 }
 
 .logo {
@@ -107,6 +141,7 @@ input[type=color]{
 
 /* footer {
     height: 100px;
+    margin-top: 100px;
 } */
 
 .main-nav a:hover {
@@ -121,10 +156,9 @@ input[type=color]{
 }
 
 .editor-controller {
-    width: 350px;
-    height: 350px;
-    background-color: #dddddd;
-    padding: 5px;
+    width: 340px;
+    height: 340px;
+    padding: 10px;
     
     display: grid;
     gap: 5px;
@@ -154,6 +188,13 @@ input[type=color]{
 
 
 /* BTNS */
+.btn {
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 0px #000000;
+
+}
 
 .btn-download {
     grid-area: btn-download
@@ -263,7 +304,7 @@ body.menu-open .main-screen {
 
 /* background */
 .bgc {
-    background-color: #ff7f00;
+    background-color: #fec89a;
 }
 
 @media (max-width: 860px) {
@@ -296,8 +337,13 @@ body.menu-open .main-screen {
         transition: background .3s;
     }
     .main-nav a:hover {
-        background: #efefef;
+        background: #f8edeb;
     }
+
+    .header-warp {
+        margin-bottom: 1.25rem;
+    }
+
 }
 
 
@@ -313,8 +359,9 @@ body.menu-open .main-screen {
         flex-direction: column;
         background-color: darkgray;
     }
-  
-  }
+
+}
+
 
 
 /* small */
@@ -325,6 +372,7 @@ body.menu-open .main-screen {
         margin-right: auto;
         max-width: 600px;
     }
+
 }
 
 /* medium */
@@ -339,6 +387,9 @@ body.menu-open .main-screen {
 
     .btn-menu {
         display: none;
+        height: 40px;
+        width: 40px;
+        background-color: #f8edeb;
     }
 }
 

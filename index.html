@@ -12,7 +12,7 @@
 <body onload="onInit()">
     <div class="main-screen" onclick="toggleMenu()"></div>
     <div class="header-warp bgc">
-        <header class="main-layout flex space-between align-center">
+        <header class="main-layout flex space-between align-center bgc">
 
             <img class="logo" src="imgs/LOGO.png" />
 
@@ -22,7 +22,7 @@
                 <li class=""><a href="#">About</a></li>
             </ul>
            
-            <button class="btn-menu" onclick="toggleMenu()"> ☰ </button>
+            <button class= "btn-menu" onclick="toggleMenu()"> ☰ </button>
         </header>
     </div>
  
@@ -32,9 +32,9 @@
             <div class="editor main-layout flex align-center">
 
                 <div class="canvas-container" contenteditable>
-                    <canvas width="350" height="350" style="outline:1px solid #1c0080"></canvas>
+                    <canvas width="340" height="340"></canvas>
                 </div>
-
+            <div class="controller-wrap"> 
                 <div class="editor-controller">
                     <input type="text" class="text-line" name="text-line" placeholder="Enter text here" contenteditable
                         onkeyup="onChangeText()" onblur="cleanPlaceholder()">
@@ -89,6 +89,7 @@
 
                 </div>
             </div>
+            </div>
         </section>
 
         <section class="gallery"> </section>
@@ -96,7 +97,7 @@
         <section class="memes"></section>
     </main>
 
-    <!-- <footer class="bgc"></footer> -->
+    <footer class="bgc"></footer>
 
     <script src="js/main.js"></script>
     <script src="js/storage-service.js"></script>

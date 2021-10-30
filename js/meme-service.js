@@ -153,7 +153,8 @@ function createLine() {
         strokeColor: 'black',
         font: 'impact',
         isSelected: true,
-        pos: initPos
+        pos: initPos,
+        isDrag: false
     }
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
@@ -195,4 +196,24 @@ function _loadSavedMemes() {
 
 function _savedMemesToStorage() {
     saveToStorage(KEY, gUserMemes)
+}
+
+// drag and drop 
+function islineClicked(clickedPos) {
+  
+    let selectedLine = getLine();
+    let txtWidth = getTxtWidth();
+    const { pos } = selectedLine;
+    const distance = Math.sqrt((pos.x - clickedPos.x) + txtWidth + (pos.y - clickedPos.y) + txtWidth)
+    return distance <= selectedLine.size
+}
+
+function setlineDrag(isDrag) {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+function moveline(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+
 }

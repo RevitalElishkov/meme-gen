@@ -3,6 +3,8 @@
 var gElCanvas;
 var gCtx;
 var gIsDownload = false;
+var gStartPos
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
     console.log('ready')
@@ -11,6 +13,7 @@ function onInit() {
     renderGallery();
     drawImage();
     getSavedMemes();
+    addListeners()
     // renderMeme()
 }
 
@@ -49,7 +52,7 @@ function renderUserMemes() {
     } else {
         console.log('memes', memes);
         var strHtmls = memes.map(function (meme) {
-            return `<img src="${meme}" />`
+            return `<img class="imges" src="${meme}" />`
         })
 
         strHtmls.join('');
@@ -62,7 +65,7 @@ function renderGallery() {
     var imgs = getImgs();
 
     const strHtmls = imgs.map(function (img) {
-        return `<img src="${img.url}" onclick="onSetPickedImg(${img.id})" />`
+        return `<img class="imges" src="${img.url}" onclick="onSetPickedImg(${img.id})" />`
     })
 
     document.querySelector('.gallery').innerHTML = strHtmls.join('');
@@ -217,4 +220,64 @@ function toggleMenu() {
     document.body.classList.toggle('menu-open');
 }
 
+// drag and drop line
 
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
+}
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
+function onDown(ev) {
+    const pos = getEvPos(ev)
+
+    if (!islineClicked(pos)) return
+    setlineDrag(true)
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+    const line = getLine();
+
+    if (line.isDrag) {
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+        gStartPos = pos
+        moveline(dx, dy);
+        renderMeme();
+    }
+}
+
+function onUp() {
+    setlineDrag(false)
+    document.body.style.cursor = 'grab'
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+        }
+    }
+    return pos
+}
