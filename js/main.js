@@ -40,8 +40,6 @@ function onSaveMeme() {
         renderUserMemes();
         openPage('memes');
     }, 500);
-
-
 }
 
 function renderUserMemes() {
@@ -200,9 +198,7 @@ function onDownloadImg() {
     gIsDownload = true;
     renderMeme();
     var elLink = document.querySelector('.down')
-    // setTimeout(() => {
-    //     downloadImg(elLink)
-    // }, 3000);
+
     setTimeout(() => {
         elLink.click();
     }, 500);
@@ -210,7 +206,7 @@ function onDownloadImg() {
 
 function downloadImg(elLink) {
     console.log('hi');
-    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    var imgContent = getMemeUrl()
     elLink.href = imgContent
     gIsDownload = false;
 }
@@ -220,25 +216,35 @@ function getMemeUrl() {
     return imgContent;
 }
 
-function toggleMenu() {
-    document.body.classList.toggle('menu-open');
+function onShareMeme(){
+    gIsDownload = true;
+    renderMeme();
+    setTimeout(() => {
+        uploadImg()
+    }, 500);
 }
 
-
-// function downloadImg() {
-//     gIsDownload = true;
-//     renderMeme();
-
-//     setTimeout(() => {
-//         check();
-//     }, 5000);
-
+// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
+// function onImgInput(ev) {
+//     loadImageFromInput(ev, renderImg)
 // }
 
-// function check(){
-//    var elLink = document.querySelector('.down')
-//     // var imgContent = gElCanvas.toDataURL('image/jpeg')
-//     elLink.href = imgContent
-//     gIsDownload = false;
+// function loadImageFromInput(ev, onImageReady) {
+//     // document.querySelector('.share-container').innerHTML = ''
+//     var reader = new FileReader()
+
+//     reader.onload = function (event) {
+//         var img = new Image()
+//         img.onload = onImageReady.bind(null, img)
+//         img.src = event.target.result
+//         gImg = img
+//     }
+//     reader.readAsDataURL(ev.target.files[0])
 // }
+
+
+// function toggleMenu() {
+//     document.body.classList.toggle('menu-open');
+// }
+
 

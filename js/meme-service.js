@@ -116,13 +116,11 @@ function fontSizing(sign) {
 }
 
 function changeFill(newColor) {
-    console.log('newColor', newColor);
     gMeme.lines[gMeme.selectedLineIdx].fillColor = newColor;
     renderMeme();
 }
 
 function changeOutline(newColor) {
-    console.log('newColor', newColor);
     gMeme.lines[gMeme.selectedLineIdx].strokeColor = newColor;
     renderMeme();
 }

@@ -28,7 +28,7 @@
     <main class="main-layout">
 
         <section class="editor-container">
-            <div class="editor main-layout flex space-between align-center">
+            <div class="editor main-layout flex align-center">
                 <div class="canvas-container" contenteditable>
                     <!-- contenteditable -->
                     <canvas width="350" height="350" style="outline:1px solid #1c0080"></canvas>
@@ -75,7 +75,11 @@
                     <!-- <button class="btn btn-download" onclick="onDownloadImg()">Download</button> -->
                     <a href="#" class="btn down" style="display: hidden;" onclick="downloadImg(this)"
                         download="my-meme.jpg">Download jpg</a>
-                        <button class="btn btn-save" onclick="onSaveMeme()">Save</button>
+                        <div class="btn btn-share" onclick="onShareMeme()">share</div>
+                        <a href="#" class="btn share" style="display: hidden;" onclick="shareMeme(this)"
+                        download="my-meme.jpg">share jpg</a>
+
+                        <div class="btn btn-save" onclick="onSaveMeme()">Save</div>
 
                 </div>
             </div>
@@ -109,6 +113,7 @@
     <footer class="bgc"></footer>
     <script src="js/main.js"></script>
     <script src="js/storage-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/meme-service.js"></script>
 </body>
 
