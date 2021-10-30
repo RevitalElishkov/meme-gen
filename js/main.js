@@ -3,7 +3,6 @@
 var gElCanvas;
 var gCtx;
 var gIsDownload = false;
-// var imgContent;
 
 function onInit() {
     console.log('ready')
@@ -11,6 +10,7 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     renderGallery();
     drawImage();
+    getSavedMemes();
     // renderMeme()
 }
 
@@ -20,7 +20,6 @@ function onOpenGallery() {
 }
 
 function onOpenMemes() {
-    // clearLines();
     renderUserMemes();
     openPage('memes');
 }
@@ -44,12 +43,18 @@ function onSaveMeme() {
 
 function renderUserMemes() {
     var memes = getMemes();
-    console.log('memes', memes);
-    const strHtmls = memes.map(function (meme) {
-        return `<img src="${meme}" />`
-    })
+    var strHtmls;
+    if (!memes || !memes.length) {
+        strHtmls = `you didn't saved memes yet 🙃`
+    } else {
+        console.log('memes', memes);
+        var strHtmls = memes.map(function (meme) {
+            return `<img src="${meme}" />`
+        })
 
-    document.querySelector('.memes').innerHTML = strHtmls.join('');
+        strHtmls.join('');
+    }
+    document.querySelector('.memes').innerHTML = strHtmls
 
 }
 
@@ -103,7 +108,6 @@ function onDeleteLine() {
 }
 
 function renderMeme() {
-    // console.log('hi');
     gCtx.save();
     var img = new Image();
     img.src = getImgSrc();
@@ -111,20 +115,17 @@ function renderMeme() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
         var lines = getLines();
         lines.forEach((line, idx) => {
-            // console.log('gIsDownload', gIsDownload);
+
             var selectedIdx = getSelectedIdx()
             if (selectedIdx === idx && !gIsDownload) drawRect(line);
             drawText(line)
         })
-        // imgContent = gElCanvas.toDataURL('image/jpeg');
 
     };
     gCtx.restore();
 }
 
-
 function drawImage() {
-    // console.log('hi');
     var img = new Image();
     img.src = getImgSrc();
     img.onload = () => {
@@ -163,8 +164,7 @@ function onAlign(dir) {
 
 function drawText(currLine) {
     if (!currLine) currLine = getLine();
-    // console.log('currLine', currLine);
-    // const xCenter = (gElCanvas.width / 2) - (currLine.txt.length * 10)
+    
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = currLine.strokeColor;
     gCtx.fillStyle = currLine.fillColor;
@@ -175,24 +175,14 @@ function drawText(currLine) {
 }
 
 function drawRect(currLine) {
-    // const width = getTxtWidth(currLine.txt) + 20
     const height = currLine.size + 20
-    // const x = currLine.pos.x - 30
     const y = currLine.pos.y - (height - 15)
-    // console.log('x', x);
-    // console.log('y', y);
-    // console.log('width', width);
-    // console.log('height', height);
 
     gCtx.beginPath();
     gCtx.rect(0, y, gElCanvas.width, height);
-    // gCtx.rect(5, y, width + (height), height);
     gCtx.fillStyle = 'rgba(220, 220, 220, 0.562)';
     gCtx.fillRect(0, y, gElCanvas.width, height);
 }
-
-
-
 
 function onDownloadImg() {
     gIsDownload = true;
@@ -205,7 +195,6 @@ function onDownloadImg() {
 }
 
 function downloadImg(elLink) {
-    console.log('hi');
     var imgContent = getMemeUrl()
     elLink.href = imgContent
     gIsDownload = false;
@@ -216,7 +205,7 @@ function getMemeUrl() {
     return imgContent;
 }
 
-function onShareMeme(){
+function onShareMeme() {
     gIsDownload = true;
     renderMeme();
     setTimeout(() => {
@@ -224,27 +213,8 @@ function onShareMeme(){
     }, 500);
 }
 
-// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
-// function onImgInput(ev) {
-//     loadImageFromInput(ev, renderImg)
-// }
-
-// function loadImageFromInput(ev, onImageReady) {
-//     // document.querySelector('.share-container').innerHTML = ''
-//     var reader = new FileReader()
-
-//     reader.onload = function (event) {
-//         var img = new Image()
-//         img.onload = onImageReady.bind(null, img)
-//         img.src = event.target.result
-//         gImg = img
-//     }
-//     reader.readAsDataURL(ev.target.files[0])
-// }
-
-
-// function toggleMenu() {
-//     document.body.classList.toggle('menu-open');
-// }
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
 
 

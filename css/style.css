@@ -38,6 +38,10 @@ img {
     visibility:hidden ;
 }
 
+.share {
+    visibility:hidden ;
+}
+
 .icon {
     width: 40px;
     height: 40px; 
@@ -58,6 +62,7 @@ input[type=color]{
 .canvas-container {
     margin-bottom: 5px;
 }
+
 /* main nav */
 
 .main-nav>*:not(:last-child) {
@@ -65,7 +70,6 @@ input[type=color]{
 }
 
 .main-nav{
-    /* width: 150px; */
     font-size: 20px;
 }
 
@@ -101,9 +105,9 @@ input[type=color]{
     margin-bottom: 0.973rem;
 }
 
-footer {
+/* footer {
     height: 100px;
-}
+} */
 
 .main-nav a:hover {
     color: #000;
@@ -131,15 +135,32 @@ footer {
         "btn-down btn-up btn-change btn-add btn-delete"
         "btn-increase btn-decrease btn-left btn-center btn-right"
         "font font font outline-Color fill-color"
-        "btn-save . btn-download . .";
-       
-
+        ". btn-save btn-download btn-share .";
 }
 
 .text-line {
     grid-area: text-line;
-    /* grid-column: span 5;
-    grid-row: 1/2; */
+}
+
+.outline-Color {
+    position: relative;
+    grid-area: outline-Color
+}
+
+.fill-color {
+    position: relative;
+    grid-area: fill-color
+}
+
+
+/* BTNS */
+
+.btn-download {
+    grid-area: btn-download
+}
+
+.btn-share {
+    grid-area: btn-share;
 }
 
 .btn-down {
@@ -184,25 +205,10 @@ footer {
 
 .btn-font {
     grid-area: btn-font;
-    /* grid-column: span 3;  */
 }
 
 .btn-save {
     grid-area: btn-save;
-}
-
-.outline-Color {
-    position: relative;
-    grid-area: outline-Color
-}
-
-.fill-color {
-    position: relative;
-    grid-area: fill-color
-}
-
-.btn-download {
-    grid-area: btn-download
 }
 
 
@@ -246,6 +252,7 @@ body.menu-open .main-screen {
 .flex.dir-column {
     flex-direction: column;
 }
+
 /* list helpers */
 
 .clean-list {
@@ -257,10 +264,7 @@ body.menu-open .main-screen {
 /* background */
 .bgc {
     background-color: #ff7f00;
-  
 }
-
-/* BTNS */
 
 @media (max-width: 860px) {
  

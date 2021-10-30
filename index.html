@@ -13,30 +13,33 @@
     <div class="main-screen" onclick="toggleMenu()"></div>
     <div class="header-warp bgc">
         <header class="main-layout flex space-between align-center">
-            <!-- <h1>MEME-GEN</h1> -->
-            <img class="logo" src="imgs/LOGO.png" />
-            
-                <ul class="main-nav clean-list flex">
-                    <li class="" onclick="onOpenGallery()"><a href="#">Gallery</a></li>
-                    <li class="" onclick="onOpenMemes()"><a href="#">Memes</a></li>
-                    <li class=""><a href="#">About</a></li>
-                </ul>
-            <button class="btn-menu" onclick="toggleMenu()">☰</button>
 
+            <img class="logo" src="imgs/LOGO.png" />
+
+            <ul class="main-nav clean-list flex">
+                <li class="" onclick="onOpenGallery()"><a href="#">Gallery</a></li>
+                <li class="" onclick="onOpenMemes()"><a href="#">Memes</a></li>
+                <li class=""><a href="#">About</a></li>
+            </ul>
+           
+            <button class="btn-menu" onclick="toggleMenu()"> ☰ </button>
         </header>
     </div>
+ 
     <main class="main-layout">
 
         <section class="editor-container">
             <div class="editor main-layout flex align-center">
+
                 <div class="canvas-container" contenteditable>
-                    <!-- contenteditable -->
                     <canvas width="350" height="350" style="outline:1px solid #1c0080"></canvas>
                 </div>
 
                 <div class="editor-controller">
                     <input type="text" class="text-line" name="text-line" placeholder="Enter text here" contenteditable
                         onkeyup="onChangeText()" onblur="cleanPlaceholder()">
+
+
                     <img class="btn icon btn-down" src="imgs/icons/arrow-down.png" onclick="onMoveLine('down')" />
                     <img class="btn icon btn-up" src="imgs/icons/arrow-up.png" onclick="onMoveLine('up')" />
                     <img class="btn icon btn-change" src="imgs/icons/up-down-arrows.png" onclick="onChangeLine()" />
@@ -52,15 +55,17 @@
                     <img class="btn icon btn-left" src="imgs/icons/align-left.png" onclick="onAlign('left')" />
                     <img class="btn icon btn-center" src="imgs/icons/center-align.png" onclick="onAlign('center')" />
                     <img class="btn icon btn-right" src="imgs/icons/align-right.png" onclick="onAlign('right')" />
+
                     <div class="outline-Color">
                         <img class="btn icon btn-right" src="imgs/icons/text-stroke.png" />
                         <input type="color" class="outline" name="outline" onchange="onChangeOutline(this.value)">
-
                     </div>
+
                     <div class="fill-color">
                         <img class="btn icon btn-right" src="imgs/icons/paint-board.png" />
                         <input type="color" class="fill" name="fill" onchange="onChangeFill(this.value)">
                     </div>
+
                     <div class="font">
                         <select class="" onchange="onChangeFont(this.value)">
                             <option value="impact">impact</option>
@@ -70,47 +75,29 @@
                             <option value="Lucida Handwriting">Lucida Handwriting</option>
                         </select>
                     </div>
+
                     <img class="btn icon btn-download" src="imgs/icons/download_icon.png" onclick="onDownloadImg()" />
 
-                    <!-- <button class="btn btn-download" onclick="onDownloadImg()">Download</button> -->
-                    <a href="#" class="btn down" style="display: hidden;" onclick="downloadImg(this)"
-                        download="my-meme.jpg">Download jpg</a>
-                        <div class="btn btn-share" onclick="onShareMeme()">share</div>
-                        <a href="#" class="btn share" style="display: hidden;" onclick="shareMeme(this)"
-                        download="my-meme.jpg">share jpg</a>
+                    <a href="#" class="btn icon down" onclick="downloadImg(this)" download="my-meme.jpg">Download
+                        jpg</a>
 
-                        <div class="btn btn-save" onclick="onSaveMeme()">Save</div>
+                    <img class="btn icon btn-save" src="imgs/icons/save.png" onclick="onSaveMeme()" />
+
+                    <img class="btn icon btn-share" src="imgs/icons/share-option.png" onclick="onShareMeme()" />
+                    <a href="#" class="share">share jpg</a>
+
 
                 </div>
             </div>
         </section>
 
-        <section class="gallery">
-            <!-- <img src="imgs/meme-imgs/1.jpg" onclick="onSetPickedImg(1)" />
-            <img src="imgs/meme-imgs/2.jpg" onclick="onSetPickedImg(2)" />
-            <img src="imgs/meme-imgs/3.jpg" onclick="onSetPickedImg(3)" />
-            <img src="imgs/meme-imgs/4.jpg" onclick="onSetPickedImg(4)" />
-            <img src="imgs/meme-imgs/5.jpg" onclick="onSetPickedImg(5)" />
-            <img src="imgs/meme-imgs/6.jpg" onclick="onSetPickedImg(6)" />
-            <img src="imgs/meme-imgs/7.jpg" onclick="onSetPickedImg(7)" />
-            <img src="imgs/meme-imgs/8.jpg" onclick="onSetPickedImg(8)" />
-            <img src="imgs/meme-imgs/9.jpg" onclick="onSetPickedImg(9)" />
-            <img src="imgs/meme-imgs/10.jpg" onclick="onSetPickedImg(10)" />
-            <img src="imgs/meme-imgs/11.jpg" onclick="onSetPickedImg(11)" />
-            <img src="imgs/meme-imgs/12.jpg" onclick="onSetPickedImg(12)" />
-            <img src="imgs/meme-imgs/13.jpg" onclick="onSetPickedImg(13)" />
-            <img src="imgs/meme-imgs/14.jpg" onclick="onSetPickedImg(14)" />
-            <img src="imgs/meme-imgs/15.jpg" onclick="onSetPickedImg(15)" />
-            <img src="imgs/meme-imgs/16.jpg" onclick="onSetPickedImg(16)" />
-            <img src="imgs/meme-imgs/17.jpg" onclick="onSetPickedImg(17)" />
-            <img src="imgs/meme-imgs/18.jpg" onclick="onSetPickedImg(18)" /> -->
-
-        </section>
+        <section class="gallery"> </section>
 
         <section class="memes"></section>
     </main>
 
-    <footer class="bgc"></footer>
+    <!-- <footer class="bgc"></footer> -->
+
     <script src="js/main.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/upload-service.js"></script>

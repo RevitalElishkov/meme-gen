@@ -28,22 +28,8 @@ var gImages = [
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [
-        // {
-        //     txt: 'Holla!',
-        //     size: 40,
-        //     align: 'left',
-        //     color: 'white',
-        //     font: 'impact',
-        //     isSelected: true,
-        //     pos: {
-        //         x: 200,
-        //         y: 100
-        //     }
-        // },
-    ]
+    lines: []
 }
-
 
 function clearLines() {
     gMeme.lines = [];
@@ -52,14 +38,18 @@ function clearLines() {
 function saveMeme() {
     var meme = getMemeUrl();
     gUserMemes.push(meme);
-    saveToStorage(KEY, gUserMemes)
+    _savedMemesToStorage();
+}
+
+function getSavedMemes() {
+    var memes = _loadSavedMemes();
+    if ((!memes || !memes.length)) memes = [];
+    gUserMemes = memes;
 }
 
 function getMemes() {
-    var memes = loadFromStorage(KEY);
-    console.log('memes', memes);
-    // if (!memes || !memes.length);
-    return memes;
+    return gUserMemes;
+
 }
 
 function getSelectedIdx() {
@@ -86,7 +76,7 @@ function align(dir) {
     const currLine = gMeme.selectedLineIdx;
     const canWidth = gElCanvas.width
     const txtWidth = getTxtWidth()
-    // gCtx.save();
+
     switch (dir) {
 
         case 'left':
@@ -99,9 +89,6 @@ function align(dir) {
             gMeme.lines[currLine].pos.x = (canWidth / 2) - (txtWidth / 2);
             break;
     }
-    // gCtx.restore()
-    // renderMeme();
-
 }
 
 function fontSizing(sign) {
@@ -132,15 +119,12 @@ function changeFont(font) {
 function changeLine() {
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx += 1
-    // console.log('Meme.selectedLineIdx', gMeme.selectedLineIdx);
 }
 
 function moveLine(dir) {
     const currLine = gMeme.selectedLineIdx;
-    // let currY = gMeme.lines[currLine].pos.y
 
     gMeme.lines[currLine].pos.y += (dir === "up") ? -5 : +5;
-    // console.log('gMeme.lines[selectedLineIdx].pos.y', gMeme.lines[currLine].pos.y);
 }
 
 function setPickedImg(id) {
@@ -150,7 +134,6 @@ function setPickedImg(id) {
 function getImgSrc() {
     var imIdx = _getImgIdx(gMeme.selectedImgId);
     var selectedImg = gImages[imIdx].url;
-    // console.log('selectedImg', selectedImg); 
     return selectedImg;
 }
 
@@ -161,7 +144,6 @@ function deleteLine() {
 }
 
 function createLine() {
-    // const xCenter = (gElCanvas.width/2)-(currLine.txt.length*10)
     const initPos = _getInitialTxtPos()
     var line = {
         txt: 'Holla!',
@@ -179,7 +161,6 @@ function createLine() {
 
 function getTxtWidth(txt) {
     if (!txt) txt = gMeme.lines[gMeme.selectedLineIdx].txt;
-    // const txt = gMeme.lines[gMeme.selectedLineIdx].txt;
     const txtWidth = gCtx.measureText(txt).width;
     return txtWidth;
 }
@@ -207,3 +188,11 @@ function _getInitialTxtPos() {
     return { x, y }
 }
 
+function _loadSavedMemes() {
+    var memes = loadFromStorage(KEY);
+    return memes;
+}
+
+function _savedMemesToStorage() {
+    saveToStorage(KEY, gUserMemes)
+}

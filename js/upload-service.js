@@ -12,6 +12,8 @@ function uploadImg() {
        elLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'`
 
        elLink.click();
+       gIsDownload = false;
+
     }
     doUploadImg(imgDataUrl, onSuccess);
 }
