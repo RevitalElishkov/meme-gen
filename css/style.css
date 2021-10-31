@@ -344,6 +344,11 @@ body.menu-open .main-screen {
         margin-bottom: 1.25rem;
     }
 
+    header {
+        height: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 
