@@ -93,11 +93,6 @@ canvas, .controller-wrap{
 
 }
 
-.controller-wrap {
-    /* border: solid #f9dcc4; */
-    
-}
-
 /* main nav */
 
 .main-nav>*:not(:last-child) {
