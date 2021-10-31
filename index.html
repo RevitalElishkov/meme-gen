@@ -21,11 +21,11 @@
                 <li class="" onclick="onOpenMemes()"><a href="#">Memes</a></li>
                 <li class=""><a href="#">About</a></li>
             </ul>
-           
-            <button class= "btn-menu" onclick="toggleMenu()"> ☰ </button>
+
+            <button class="btn-menu" onclick="toggleMenu()"> ☰ </button>
         </header>
     </div>
- 
+
     <main class="main-layout">
 
         <section class="editor-container">
@@ -34,64 +34,73 @@
                 <div class="canvas-container" contenteditable>
                     <canvas width="340" height="340"></canvas>
                 </div>
-            <div class="controller-wrap"> 
-                <div class="editor-controller">
-                    <input type="text" class="text-line" name="text-line" placeholder="Enter text here" contenteditable
-                        onkeyup="onChangeText()" onblur="cleanPlaceholder()">
+                <div class="controller-wrap">
+                    <div class="editor-controller">
+                        <input type="text" class="text-line" name="text-line" placeholder="Enter text here"
+                            contenteditable oninput="onChangeTxt()" onblur="cleanPlaceholder()">
 
 
-                    <img class="btn icon btn-down" src="imgs/icons/arrow-down.png" onclick="onMoveLine('down')" />
-                    <img class="btn icon btn-up" src="imgs/icons/arrow-up.png" onclick="onMoveLine('up')" />
-                    <img class="btn icon btn-change" src="imgs/icons/up-down-arrows.png" onclick="onChangeLine()" />
+                        <img class="btn icon btn-down" src="imgs/icons/arrow-down.png" onclick="onMoveLine('down')" />
+                        <img class="btn icon btn-up" src="imgs/icons/arrow-up.png" onclick="onMoveLine('up')" />
+                        <img class="btn icon btn-change" src="imgs/icons/up-down-arrows.png" onclick="onChangeLine()" />
 
-                    <img class="btn icon btn-add" src="imgs/icons/add.png" onclick="onCreateLine()" />
-                    <img class="btn icon btn-delete" src="imgs/icons/trash.png" onclick="onDeleteLine()" />
+                        <img class="btn icon btn-add" src="imgs/icons/add.png" onclick="onCreateLine()" />
+                        <img class="btn icon btn-delete" src="imgs/icons/trash.png" onclick="onDeleteLine()" />
 
-                    <img class="btn icon btn-increase" src="imgs/icons/increase-font.png"
-                        onclick="onFontSizing('plus')" />
-                    <img class="btn icon btn-decrease" src="imgs/icons/decrease-font.png"
-                        onclick="onFontSizing('minus')" />
+                        <img class="btn icon btn-increase" src="imgs/icons/increase-font.png"
+                            onclick="onFontSizing('plus')" />
+                        <img class="btn icon btn-decrease" src="imgs/icons/decrease-font.png"
+                            onclick="onFontSizing('minus')" />
 
-                    <img class="btn icon btn-left" src="imgs/icons/align-left.png" onclick="onAlign('left')" />
-                    <img class="btn icon btn-center" src="imgs/icons/center-align.png" onclick="onAlign('center')" />
-                    <img class="btn icon btn-right" src="imgs/icons/align-right.png" onclick="onAlign('right')" />
+                        <img class="btn icon btn-left" src="imgs/icons/align-left.png" onclick="onAlign('left')" />
+                        <img class="btn icon btn-center" src="imgs/icons/center-align.png"
+                            onclick="onAlign('center')" />
+                        <img class="btn icon btn-right" src="imgs/icons/align-right.png" onclick="onAlign('right')" />
 
-                    <div class="outline-Color">
-                        <img class="btn icon" src="imgs/icons/text-stroke.png" />
-                        <input type="color" class="btn outline" name="outline" onchange="onChangeOutline(this.value)">
+                        <div class="outline-Color">
+                            <img class="btn icon" src="imgs/icons/text-stroke.png" />
+                            <input type="color" class="btn outline" name="outline"
+                                onchange="onChangeOutline(this.value)">
+                        </div>
+
+                        <div class="fill-color">
+                            <img class="btn icon" src="imgs/icons/paint-board.png" />
+                            <input type="color" class="btn fill" name="fill" onchange="onChangeFill(this.value)">
+                        </div>
+
+                        <div class="font">
+                            <select class="" onchange="onChangeFont(this.value)">
+                                <option value="impact">impact</option>
+                                <option value="Arial">Arial</option>
+                                <option value="Copperplate">Copperplate</option>
+                                <option value="Calibri">Calibri</option>
+                                <option value="Lucida Handwriting">Lucida Handwriting</option>
+                            </select>
+                        </div>
+
+                        <img class="btn icon btn-download" src="imgs/icons/download_icon.png"
+                            onclick="onDownloadImg()" />
+
+                        <a href="#" class="down" onclick="downloadImg(this)" download="my-meme.jpg">Download
+                            jpg</a>
+
+                        <img class="btn icon btn-save" src="imgs/icons/save.png" onclick="onSaveMeme()" />
+
+                        <img class="btn icon btn-share" src="imgs/icons/share-option.png" onclick="onShareMeme()" />
+                        <a href="#" class="share">share jpg</a>
+                        
+                        <div class="img-upload">
+                            <input type="file" class="file-input" name="image" onchange="onImgInput(event)" />
+                            <img class="btn icon" src="imgs/icons/add-img.png" />
+                        </div>
+                      
+                        <!-- <div class="stickers"></div> -->
                     </div>
-
-                    <div class="fill-color">
-                        <img class="btn icon" src="imgs/icons/paint-board.png" />
-                        <input type="color" class="btn fill" name="fill" onchange="onChangeFill(this.value)">
-                    </div>
-
-                    <div class="font">
-                        <select class="" onchange="onChangeFont(this.value)">
-                            <option value="impact">impact</option>
-                            <option value="Arial">Arial</option>
-                            <option value="Copperplate">Copperplate</option>
-                            <option value="Calibri">Calibri</option>
-                            <option value="Lucida Handwriting">Lucida Handwriting</option>
-                        </select>
-                    </div>
-
-                    <img class="btn icon btn-download" src="imgs/icons/download_icon.png" onclick="onDownloadImg()" />
-
-                    <a href="#" class="down" onclick="downloadImg(this)" download="my-meme.jpg">Download
-                        jpg</a>
-
-                    <img class="btn icon btn-save" src="imgs/icons/save.png" onclick="onSaveMeme()" />
-
-                    <img class="btn icon btn-share" src="imgs/icons/share-option.png" onclick="onShareMeme()" />
-                    <a href="#" class="share">share jpg</a>
-
-
                 </div>
             </div>
-            </div>
-        </section>
 
+            <div class="stickers"></div>
+        </section>
         <section class="gallery"> </section>
 
         <section class="memes"></section>

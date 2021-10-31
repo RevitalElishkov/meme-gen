@@ -3,11 +3,18 @@
 const KEY = 'myMemes'
 var gKeywords = { 'VIP': 1, 'funny puk': 1 }
 var gUserMemes = [];
+var gStickers = [
+    { id: 1, url: 'imgs/stickers/sticker-1.png', pos: { x: 0, y: 0 }, isDrag: false },
+    { id: 2, url: 'imgs/stickers/sticker-2.png', pos: { x: 0, y: 0 }, isDrag: false },
+    { id: 3, url: 'imgs/stickers/sticker-3.png', pos: { x: 0, y: 0 }, isDrag: false },
+    { id: 4, url: 'imgs/stickers/sticker-4.png', pos: { x: 0, y: 0 }, isDrag: false },
+    { id: 5, url: 'imgs/stickers/sticker-5.png', pos: { x: 0, y: 0 }, isDrag: false }
+];
 
 var gImages = [
     { id: 1, url: 'imgs/meme-imgs/1.jpg', keywords: ['VIP'] },
-    { id: 2, url: 'imgs/meme-imgs/2.jpg', keywords: ['animals'] },
-    { id: 3, url: 'imgs/meme-imgs/3.jpg', keywords: ['animals'] },
+    { id: 2, url: 'imgs/meme-imgs/2.jpg', keywords: ['animals', 'dog'] },
+    { id: 3, url: 'imgs/meme-imgs/3.jpg', keywords: ['animals', 'dog', 'baby'] },
     { id: 4, url: 'imgs/meme-imgs/4.jpg', keywords: ['animals'] },
     { id: 5, url: 'imgs/meme-imgs/5.jpg', keywords: ['animals'] },
     { id: 6, url: 'imgs/meme-imgs/6.jpg', keywords: ['animals'] },
@@ -28,7 +35,27 @@ var gImages = [
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: []
+    selectedStickerIdx: 0,
+    lines: [],
+    stickers: []
+}
+
+
+function setSticker(idx) {
+    const sticker = gStickers[idx];
+    gMeme.stickers.push(sticker);
+}
+
+function getStickersInLine() {
+    return gMeme.stickers;
+}
+
+function getStickerSrc(idx) {
+    return gMeme.stickers[idx].url;
+}
+
+function clearStickers() {
+    gMeme.stickers = [];
 }
 
 function clearLines() {
@@ -49,7 +76,10 @@ function getSavedMemes() {
 
 function getMemes() {
     return gUserMemes;
+}
 
+function getStickers() {
+    return gStickers;
 }
 
 function getSelectedIdx() {
@@ -68,8 +98,9 @@ function getImgs() {
     return gImages;
 }
 
-function changeText(newText) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = newText;
+function changeTxt(newTxt) {
+    var line = getLine();
+    line.txt = newTxt;
 }
 
 function align(dir) {
@@ -78,7 +109,6 @@ function align(dir) {
     const txtWidth = getTxtWidth()
 
     switch (dir) {
-
         case 'left':
             gMeme.lines[currLine].pos.x = 0;
             break;
@@ -92,28 +122,31 @@ function align(dir) {
 }
 
 function fontSizing(sign) {
-    var currLineSize = gMeme.lines[gMeme.selectedLineIdx].size;
+    var line = getLine();
+    var currLineSize = line.size;
 
     if (sign === 'plus' && currLineSize < 70) {
-        gMeme.lines[gMeme.selectedLineIdx].size += 5
-
+        line.size += 5;
     } else if (sign === 'minus' && currLineSize > 20) {
-        gMeme.lines[gMeme.selectedLineIdx].size -= 5
+        line.size -= 5;
     }
 }
 
 function changeFill(newColor) {
-    gMeme.lines[gMeme.selectedLineIdx].fillColor = newColor;
+    var line = getLine();
+    line.fillColor = newColor;
     renderMeme();
 }
 
 function changeOutline(newColor) {
-    gMeme.lines[gMeme.selectedLineIdx].strokeColor = newColor;
+    var line = getLine();
+    line.strokeColor = newColor;
     renderMeme();
 }
 
 function changeFont(font) {
-    gMeme.lines[gMeme.selectedLineIdx].font = font;
+    var line = getLine();
+    line.font = font;
 }
 
 function changeLine() {
@@ -122,9 +155,8 @@ function changeLine() {
 }
 
 function moveLine(dir) {
-    const currLine = gMeme.selectedLineIdx;
-
-    gMeme.lines[currLine].pos.y += (dir === "up") ? -5 : +5;
+    var line = getLine();
+    line.pos.y += (dir === "up") ? -5 : +5;
 }
 
 function setPickedImg(id) {
@@ -200,20 +232,61 @@ function _savedMemesToStorage() {
 
 // drag and drop 
 function islineClicked(clickedPos) {
-  
+    var lines = getLines();
+    for (var i = 0; i < lines.length; i++) {
+        var currline = lines[i];
+        var txt = currline.txt
+        var txtWidth = getTxtWidth(txt)
+        var currPos = currline.pos
+        var distance = Math.sqrt((currPos.x - clickedPos.x) + txtWidth + (currPos.y - clickedPos.y) + txtWidth)
+        if (distance <= txtWidth) {
+            gMeme.selectedLineIdx = i
+            return true;
+        }
+    }
     let selectedLine = getLine();
-    let txtWidth = getTxtWidth();
-    const { pos } = selectedLine;
-    const distance = Math.sqrt((pos.x - clickedPos.x) + txtWidth + (pos.y - clickedPos.y) + txtWidth)
-    return distance <= selectedLine.size
+    return distance <= getTxtWidth(selectedLine.txt)
 }
 
 function setlineDrag(isDrag) {
-    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+    var line = getLine();
+    line.isDrag = isDrag
 }
 
 function moveline(dx, dy) {
-    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
-    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
-
+    var line = getLine();
+    line.pos.x += dx
+    line.pos.y += dy
 }
+
+// drag and drop sticker
+
+// function isStickerClicked(clickedPos) {
+//     var stickers = getStickersInLine()
+//     for (var i = 0; i < stickers.length; i++) {
+//         var currSticker = stickers[i];
+//         var currPos = currSticker.pos
+//         var distance = Math.sqrt((currPos.x - clickedPos.x) + 100 + (currPos.y - clickedPos.y) + 100)
+//         if (distance <= 100) {
+//             gMeme.selectedLineIdx = i
+//             return true;
+//         }
+//     }
+//     // let selectedSticker =  getSticker();
+//     return distance <= 100
+// }
+
+// function moveSticker(dx, dy) {
+//     var sticker = getSticker();
+//     sticker.pos.x += dx
+//     sticker.pos.y += dy
+// }
+
+// function setStickerDrag(isDrag) {
+//     var sticker = getSticker();
+//     sticker.isDrag = isDrag
+// }
+
+// function getSticker(){
+//     return gMeme.stickers[gMeme.selectedStickerIdx]
+// }

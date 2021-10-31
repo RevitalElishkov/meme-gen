@@ -31,13 +31,16 @@ img {
     object-fit: cover;
 }
 
-.imges {
+.gallery img, .memes img  {
     width: 150;
     height: 150px;
     margin: 5px;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 0px #000000;
+}
 
+.gallery img {
+    cursor: pointer;
 }
 
 .down {
@@ -49,9 +52,14 @@ img {
 }
 
 .icon {
-    width: 40px;
-    height: 40px; 
+    width: 48px;
+    height: 48px; 
     margin: auto;
+}
+
+.sticker {
+    width: 40px;
+    height: 40px;
 }
 
 input[type=text], select {
@@ -74,16 +82,31 @@ input[type=color]{
     transform: translate(50%,-50%);
 }
 
+input[type=file] {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    /* top: 30%; */
+    right: 20%;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+    /* transform: tsranslate(50%,-50%); */
+}
+
 select {
-    height: 100%;
+    /* height: 100%; */
+    height: 50px;
+    cursor: pointer;
 }
 
-.canvas-container {
+/* .canvas-container {
     margin-bottom: 5px;
-}
+    border: none;
+} */
 
-.btn, input[type=text], .images, select {
-    box-shadow: 0px 0px 4px 0px #000000;
+.btn, input[type=text], .gallery img, select {
+    box-shadow: 0px 0px 4px 0px #aaa9a9;
 }
 
 canvas, .controller-wrap{
@@ -163,7 +186,18 @@ canvas, .controller-wrap{
         "btn-down btn-up btn-change btn-add btn-delete"
         "btn-increase btn-decrease btn-left btn-center btn-right"
         "font font font outline-Color fill-color"
-        ". btn-save btn-download btn-share .";
+        "btn-save btn-download . btn-share img-upload";
+        /* "stickers stickers stickers stickers stickers"; */
+}
+
+.img-upload {
+    position: relative;
+    grid-area: img-upload;
+    padding-top: 6px;
+}
+
+.stickers {
+    grid-area: stickers;
 }
 
 .text-line {
@@ -184,11 +218,15 @@ canvas, .controller-wrap{
 /* BTNS */
 .btn {
     padding: 5px;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     border-radius: 5px;
-    box-shadow: 0px 0px 4px 0px #000000;
+    box-shadow: 0px 0px 4px 0px #aaa9a9;
     cursor: pointer;
 }
+
+/* .img-upload.btn {
+    margin-top: 50px;
+} */
 
 .btn:hover {
     background-color: #fcd5ce;
